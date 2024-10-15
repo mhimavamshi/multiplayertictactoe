@@ -51,7 +51,7 @@ function check_board(recent_move, player) {
 
 
 function place(event) {
-    if(event.target.value != "-" || game_over) {
+    if(event.target.value != BLANK || game_over) {
         return;
     }
     ++turn;
@@ -68,14 +68,15 @@ let game_over = false;
 
 let game_buttons = [];
 
-let opposite = {'X': 'O', 'O': 'X'}
+let opposite = {'X': 'O', 'O': 'X'};
+const BLANK =  "";
 
 for(let i = 0; i < 3; ++i) {
     game_buttons.push([]);
     for(let j = 0; j < 3; ++j) {
         let button_node = document.createElement("input");
         button_node.setAttribute("type", "button");
-        button_node.setAttribute("value", "-");
+        button_node.setAttribute("value", BLANK);
         button_node.setAttribute("position", `${i}${j}`);
         button_node.addEventListener("click", place);
         game_area.appendChild(button_node);

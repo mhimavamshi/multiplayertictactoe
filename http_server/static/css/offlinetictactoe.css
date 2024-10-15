@@ -1,8 +1,8 @@
 body {
     height: 100vh;
     margin: 0;
-    background-color: black;     /* Dark charcoal background */
-    font-family: 'Poppins', sans-serif; /* Font for body */
+    background-color: black;     
+    font-family: 'Press Start 2P', cursive; 
     display: grid;
     align-items: center;
     justify-items: center;
@@ -10,35 +10,35 @@ body {
 
 .GameArea {
     margin-bottom: 10px;
-    background-color: #D3D3D3; /* Soft light gray for the board */
-    padding: 5px; /* Optional padding */
-    border-radius: 10px; /* Rounded corners */
+    background-color: #D3D3D3; 
+    padding: 5px; 
+    border-radius: 10px; 
 }
 
 .GameArea input[type="button"] {
     width: 60px;
     height: 60px;
     font-size: 24px;
-    border: 1px solid #ccc; /* Light border */
+    font-family: 'Press Start 2P', cursive;
+    border: 1px solid #ccc; 
     border-radius: 5px;
-    background-color: #000000; /* Calming blue for buttons */
-    color: white; /* White text */
-    cursor: pointer;
+    background-color: #000000;
+    color: white; 
     transition: background-color 0.3s;
 }
 
 .GameArea input[type="button"]:hover {
-    background-color: white; /* Darker blue on hover */
+    background-color: white; 
     color: black;
 }
 
 #gamestatus {
     font-size: 20px;
-    color: white; /* White text for visibility */
+    color: white; 
     margin: 10px 0;
     font-weight: bold;
     text-align: center;
-    font-family: 'Montserrat', sans-serif; /* Font for game status */
+    font-family: 'Press Start 2P', cursive; 
 }
 
 #restart {
@@ -46,12 +46,14 @@ body {
     font-size: 18px;
     border: none;
     border-radius: 5px;
-    background-color: darkgreen; /* Matching button color */
-    color: white; /* White text */
+    background-color: black; 
+    color: white; 
     cursor: pointer;
     transition: background-color 0.3s;
+    font-family: 'Press Start 2P', cursive;
 }
 
 #restart:hover {
-    background-color: green; /* Darker blue on hover */
+    background-color: white; 
+    color: black;
 }
