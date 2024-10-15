@@ -91,3 +91,9 @@ let restart_button = document.querySelector("#restart");
 restart_button.onclick = ()=>{
     location.reload();
 };
+
+
+let home_button = document.querySelector("#home");
+home_button.onclick = ()=>{
+    location.href = "/";
+};
