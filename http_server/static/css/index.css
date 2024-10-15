@@ -1,0 +1,47 @@
+body {
+    height: 100vh;               /* Full viewport height */
+    margin: 0;                   /* Removes default margin */
+    background-color: black;     /* Dark background */
+    font-family: 'Poppins', sans-serif; /* Font for body */
+    display: grid;               /* Use grid for centering */
+    align-items: center;         /* Center content vertically */
+    justify-items: center;       /* Center content horizontally */
+}
+
+.container {
+    text-align: center;          /* Center text in the container */
+}
+
+h1 {
+    color: white;                /* White text for the heading */
+    margin-bottom: 20px;         /* Space below the heading */
+}
+
+nav {
+    display: flex;               /* Use flexbox for links */
+    flex-direction: column;      /* Stack links vertically */
+    gap: 15px;                  /* Space between links */
+}
+
+nav a {
+    text-decoration: none;       /* Remove underline from links */
+    background-color: white;  /* Button color */
+    color: black;                /* White text */
+    padding: 10px 20px;         /* Padding for buttons */
+    border-radius: 5px;         /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+nav a:hover {
+    background-color: #333333;      /* Change to white on hover */
+    color: white;                 /* Change text color to black */
+}
+
+.info-area {
+    background-color: white;      /* White background */
+    padding: 20px;                /* Padding around the area */
+    border-radius: 10px;          /* Rounded corners */
+    text-align: center;           /* Center text */
+    margin-top: 20px;             /* Space above the info area */
+    color: black;                  /* Black text for visibility */
+}

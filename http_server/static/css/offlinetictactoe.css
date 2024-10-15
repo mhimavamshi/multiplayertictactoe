@@ -1,0 +1,57 @@
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: black;     /* Dark charcoal background */
+    font-family: 'Poppins', sans-serif; /* Font for body */
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.GameArea {
+    margin-bottom: 10px;
+    background-color: #D3D3D3; /* Soft light gray for the board */
+    padding: 5px; /* Optional padding */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.GameArea input[type="button"] {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px;
+    background-color: #000000; /* Calming blue for buttons */
+    color: white; /* White text */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.GameArea input[type="button"]:hover {
+    background-color: white; /* Darker blue on hover */
+    color: black;
+}
+
+#gamestatus {
+    font-size: 20px;
+    color: white; /* White text for visibility */
+    margin: 10px 0;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; /* Font for game status */
+}
+
+#restart {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: darkgreen; /* Matching button color */
+    color: white; /* White text */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#restart:hover {
+    background-color: green; /* Darker blue on hover */
+}
