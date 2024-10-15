@@ -56,7 +56,7 @@ function place(event) {
     }
     ++turn;
     const player = turn % 2 ? "X" : "O";
-    game_status.innerHTML = "Waiting for "+opposite[player]+" 's move...";
+    game_status.innerHTML = `Waiting for ${opposite[player]}'s move...`;
     event.target.value = player;
     check_board(event.target.getAttribute("position"), player);
 }
