@@ -20,3 +20,4 @@ $ python http_server/server.py
 - [ ] Online Mode
     - [X] Game creation
     - [X] Player Validation (simple cookies for now)
+    - [ ] Handle the same player for multiple games
