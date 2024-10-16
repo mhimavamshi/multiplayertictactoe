@@ -45,13 +45,13 @@ def join_game():
 
     clientID = request.cookies.get("clientID")
     if clientID in games[gameID]:
-        return render_template("multiplayergame.html", clientID=clientID, gameID=gameID)
+        return render_template("multiplayergame.html", clientID=clientID, gameID=gameID, full=len(games[gameID]) == 2)
 
     if len(games[gameID]) < 2:
         clientID = clientID_gen()
         while clientID in games[gameID]: clientID = clientID_gen()
         games[gameID].add(clientID)
-        resp = make_response(render_template("multiplayergame.html", clientID=clientID, gameID=gameID))
+        resp = make_response(render_template("multiplayergame.html", clientID=clientID, gameID=gameID, full=len(games[gameID]) == 2))
         resp.set_cookie("clientID", clientID)
         return resp
     
