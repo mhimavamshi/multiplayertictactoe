@@ -2,9 +2,14 @@
 
 
 ## Usage
-- Start the HTTP Server
+- Install libraries, dependencies etc.,
 ```
 $ pip install flask
+$ cd game_server; npm install
+```
+
+- Start the HTTP Server
+```
 $ python http_server/server.py
 ```
 - Go to http://localhost:8000
