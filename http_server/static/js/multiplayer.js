@@ -5,11 +5,20 @@ join_button.onclick = join;
 let create_button = document.querySelector("#create");
 create_button.onclick = create;
 
+let gameID = document.querySelector("#gameID");
+
 function join() {
-    alert("Joining...");
+    window.location.href = `/join?gameID=${gameID.value}`;
 }
 
-
-function create() {
-    
+async function create() {
+    try {
+        fetch('/create', {
+            method: 'POST'
+        })
+        .then((response) => response.text())
+        .then((text) => window.location.href = `/join?gameID=${text}`);
+    } catch (error) {
+        console.error('Error creating game:', error);
+    }
 }
