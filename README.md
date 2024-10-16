@@ -13,3 +13,5 @@ $ python http_server/server.py
 #### TODO
 - [X] Offline Mode
 - [ ] Online Mode
+    - [X] Game creation
+    - [X] Player Validation (simple cookies for now)
