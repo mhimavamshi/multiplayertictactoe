@@ -4,11 +4,16 @@
   "description": "A tic tac toe websocket game server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.mjs",
+    "dev": "nodemon index.mjs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
