@@ -21,3 +21,7 @@ $ python http_server/server.py
     - [X] Game creation
     - [X] Player Validation (simple cookies for now)
     - [ ] Handle the same player for multiple games
+
+###### log
+- events are:
+    - event: join, data: gameID, clientID   
