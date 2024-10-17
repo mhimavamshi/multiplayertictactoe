@@ -8,8 +8,24 @@
 <body>
     <p>Your client ID: {{ clientID }}</p>
     <p>Game ID: {{ gameID }}</p>
-    <p>Full: {{ full }}</p>
+
+    <input type="hidden" id="clientID" value="{{ clientID }}">
+    <input type="hidden" id="gameID" value="{{ gameID }}">
 </body>
 <script>
+    let clientID = document.querySelector("#clientID").value;
+    let gameID = document.querySelector("#gameID").value;
+
+    let wsc = new WebSocket("ws://localhost:8080");
+    wsc.onerror = console.error;
+    
+    wsc.onmessage = (event) => {
+        console.log(event.data);
+    }
+
+    wsc.onopen = (event)=>{
+        wsc.send(JSON.stringify({"event": "join", "data": {"clientID": clientID, "gameID": gameID}}));
+    }
+
 </script>
 </html>
