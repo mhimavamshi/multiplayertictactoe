@@ -20,5 +20,6 @@ async function create() {
         .then((text) => window.location.href = `/join?gameID=${text}`);
     } catch (error) {
         console.error('Error creating game:', error);
+        alert(`Error: ${error}`);
     }
 }
