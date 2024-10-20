@@ -19,5 +19,4 @@ wss.on('connection', function connection(ws) {
         }
     });
   
-    ws.send('server works!');
 });
