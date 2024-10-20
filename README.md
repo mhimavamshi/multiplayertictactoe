@@ -22,6 +22,13 @@ $ python http_server/server.py
     - [X] Player Validation (simple cookies for now)
     - [ ] Handle the same player for multiple games
 
-###### log
+#### log
 - events are:
     - event: join, data: gameID, clientID   
+        - can rejoin and get the symbol again
+
+- game structure: 
+    - games = {gameID: {Game: game, Players [ player, player]}}
+    - each time games.players.find(player.id == req.id) for checking player membership for the game with gameID
+    - no map or set for it as its just 2 players (X and O) 
+    - 
