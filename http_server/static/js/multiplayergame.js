@@ -1,12 +1,15 @@
 function handle_join(data) {
-    symbolpara.innerHTML = `<b>${data}</b>`;
+    symbolpara.innerHTML = `<b>${data.symbol}</b>`;
 }
 
-
+function handle_broadcast(data) {
+    messages.innerHTML += `<i><b>${data.symbol}<b>: ${data.message}</i><br>`;
+}
 
 let handler_lookup = {
     "joined": handle_join,
-    "rejoined": handle_join
+    "rejoined": handle_join,
+    "broadcasted": handle_broadcast
 }
 
 
