@@ -9,6 +9,12 @@
     <p>Your client ID: {{ clientID }}</p>
     <p>Game ID: {{ gameID }}</p>
     <p>Your symbol: <p id="symbol">waiting...</p></p>
+    <div class="messages">
+        <label for="message">Message:</label>
+        <input type="text" name="message" id="message">
+        <input type="button" value="Send" id="send">
+        <p id="messages"></p>
+    </div>
 
     <input type="hidden" id="clientID" value="{{ clientID }}">
     <input type="hidden" id="gameID" value="{{ gameID }}">
@@ -19,6 +25,10 @@
     let gameID = document.querySelector("#gameID").value;
     let symbolpara = document.querySelector("#symbol");
 
+    let sendbtn = document.querySelector("#send");
+    let messageinput = document.querySelector("#message");
+    let messages = document.querySelector("#messages");
+
     let wsc = new WebSocket("ws://localhost:8080");
     wsc.onerror = console.error;
     
@@ -28,6 +38,11 @@
 
     wsc.onopen = (event)=>{
         wsc.send(JSON.stringify({"event": "join", "data": {"clientID": clientID, "gameID": gameID}}));
+    }
+
+    sendbtn.onclick = (event)=>{
+        if(!wsc.readyState === WebSocket.OPEN) return;
+        wsc.send(JSON.stringify({"event": "broadcast", "data": {"clientID": clientID, "gameID": gameID, "message": messageinput.value}}));
     }
 
 </script>
