@@ -26,15 +26,20 @@ $ node game_server/index.mjs
 - [ ] Online Mode
     - [X] Game creation
     - [X] Player Validation (simple cookies for now)
-    - [ ] Handle the same player for multiple games
+    - [X] Handle the same player for multiple games (same clientID across different games)
 
-#### log
+#### devlog
 - events are:
     - event: join, data: gameID, clientID   
         - can rejoin and get the symbol again
+    - event: broadcast, data: gameID, clientID
+        - send the message to all players in the current game (2 players X and O)
+    
 
 - game structure: 
     - games = {gameID: {Game: game, Players [ player, player]}}
     - each time games.players.find(player.id == req.id) for checking player membership for the game with gameID
     - no map or set for it as its just 2 players (X and O) 
     - 
+
+every move is sent to server and then validates against the board of the game in memory
