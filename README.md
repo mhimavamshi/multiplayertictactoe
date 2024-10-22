@@ -27,6 +27,7 @@ $ node game_server/index.mjs
     - [X] Game creation
     - [X] Player Validation (simple cookies for now)
     - [X] Handle the same player for multiple games (same clientID across different games)
+    - [ ] Manage the Game
 
 #### devlog
 - events are:
