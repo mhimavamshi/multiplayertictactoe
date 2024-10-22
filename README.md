@@ -12,7 +12,13 @@ $ cd game_server; npm install
 ```
 $ python http_server/server.py
 ```
-- Go to http://localhost:8000
+
+- Start the WebSocket Server
+```
+$ node game_server/index.mjs
+```
+
+- Go to http://localhost:4000
 
 
 #### TODO
