@@ -44,3 +44,4 @@ $ node game_server/index.mjs
     - 
 
 every move is sent to server and then validates against the board of the game in memory
+store history of game or not. client side (local storage etc) or server side (by POST requests to HTTP server)
