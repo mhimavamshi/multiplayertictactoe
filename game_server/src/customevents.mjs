@@ -6,7 +6,9 @@ const EVENTS = {
     MOVE: "move",
     ERROR: "error",
     BROADCAST: "broadcast",
-    BROADCASTED: "broadcasted"
+    BROADCASTED: "broadcasted",
+    MOVED: "moved",
+    NEW_PLAYER: "newplayer"
 }
 
 
