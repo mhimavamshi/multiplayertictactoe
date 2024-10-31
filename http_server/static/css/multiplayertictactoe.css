@@ -1,0 +1,64 @@
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: black;     
+    font-family: 'Press Start 2P', cursive; 
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.GameArea {
+    margin-bottom: 0px;
+    background-color: #D3D3D3; 
+    padding: 3px; 
+    border-radius: 10px; 
+}
+
+.GameArea input[type="button"] {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    font-family: 'Press Start 2P', cursive;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    background-color: #000000;
+    color: white; 
+    transition: background-color 0.3s;
+}
+
+.GameArea input[type="button"]:hover {
+    background-color: white; 
+    color: black;
+}
+
+#gamestatus {
+    /* font-size: 20px; */
+    color: white; 
+    margin: 10px 0;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'Press Start 2P', cursive; 
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: black; 
+    color: white; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Press Start 2P', cursive;
+}
+
+button:hover {
+    background-color: white; 
+    color: black;
+}
+
+p {
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+}
