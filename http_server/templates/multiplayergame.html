@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/multiplayertictactoe.css">
     <title>Game</title>
 </head>
 <body>
-    <p>Your client ID: {{ clientID }}</p>
+    <!-- <p>Your client ID: {{ clientID }}</p>
     <p>Game ID: {{ gameID }}</p>
     <p>Your symbol: <p id="symbol">waiting...</p></p>
     <div class="messages">
@@ -14,8 +16,19 @@
         <input type="text" name="message" id="message">
         <input type="button" value="Send" id="send">
         <p id="messages"></p>
-    </div>
+    </div> -->
 
+    <div class="GameArea">
+    </div>
+    <div class="InfoArea">
+        <p>Game ID: {{ gameID }}</p>
+        <p>Symbol: <span id="symbol"></span></p>
+        <p id="gamestatus">Waiting for another player...</p>
+    </div>
+    <div class="ControlArea">
+        <!-- <button id="restart">Restart</button><br> -->
+        <button id="home">Go Home</button>
+    </div>
     <input type="hidden" id="clientID" value="{{ clientID }}">
     <input type="hidden" id="gameID" value="{{ gameID }}">
 </body>
@@ -23,27 +36,50 @@
 <script>
     let clientID = document.querySelector("#clientID").value;
     let gameID = document.querySelector("#gameID").value;
-    let symbolpara = document.querySelector("#symbol");
+    let symbolspan = document.querySelector("#symbol");
+    let gamestatus = document.querySelector("#gamestatus");
+    let info_store = {};
+    let opposite = {'X': 'O', 'O': 'X'};
+    
 
-    let sendbtn = document.querySelector("#send");
+    // let sendbtn = document.querySelector("#send");
     let messageinput = document.querySelector("#message");
     let messages = document.querySelector("#messages");
 
-    let wsc = new WebSocket("ws://localhost:8080");
-    wsc.onerror = console.error;
+    let player_symbol;
+
+    let wsc = new WebSocket("ws://localhost:4500");
+    // wsc.onerror = console.error;
+    wsc.onerror = (error)=>{
+        console.error(error);
+        alert("No connection to the server!");
+    }
     
     wsc.onmessage = (event) => {
         handle_message(event.data);
     }
 
     wsc.onopen = (event)=>{
-        wsc.send(JSON.stringify({"event": "join", "data": {"clientID": clientID, "gameID": gameID}}));
+        // wsc.send(JSON.stringify({"event": "join", "data": {"clientID": clientID, "gameID": gameID}}));
+        send_event("join", {"clientID": clientID, "gameID": gameID}, wsc);
     }
 
-    sendbtn.onclick = (event)=>{
-        if(!wsc.readyState === WebSocket.OPEN) return;
-        wsc.send(JSON.stringify({"event": "broadcast", "data": {"clientID": clientID, "gameID": gameID, "message": messageinput.value}}));
+    wsc.onclose = (event)=>{
+
     }
+
+    function send_event(event, data, wsc) {
+        let obj = JSON.stringify({"event": event, "data": data});
+        console.log(`Sending ${obj} to server...`);
+        if(wsc) wsc.send(obj);
+        else console.error(`no connection to server, ${wsc}`);
+    }
+
+    // sendbtn.onclick = (event)=>{
+    //     if(!wsc.readyState === WebSocket.OPEN) return;
+    //     wsc.send(JSON.stringify({"event": "broadcast", "data": {"clientID": clientID, "gameID": gameID, "message": messageinput.value}}));
+    // }
 
 </script>
+<script src="/js/multiplayerboard.js"></script>
 </html>
