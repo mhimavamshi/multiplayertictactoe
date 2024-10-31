@@ -38,7 +38,11 @@ event_emitter.on(EVENTS.JOIN, (data, games, ws)=>{
         if(player) {
             console.log(`Player ${player.clientID} already in the room ${data.gameID}`);
             player.ws = ws;
-            player.send({"event": EVENTS.REJOINED, "data": {"symbol": player.symbol}});
+            console.log(`Game State: ${JSON.stringify(games[data.gameID].game.state)}`);
+            player.send({
+                "event": EVENTS.REJOINED, 
+                "data": {"symbol": player.symbol, "state": games[data.gameID].game.state, "full": games[data.gameID].players.length == 2, "status": games[data.gameID].game.status, "last": games[data.gameID].game.last}
+            }); 
             return;
         }
     }
@@ -48,7 +52,12 @@ event_emitter.on(EVENTS.JOIN, (data, games, ws)=>{
         player = new Player(data.clientID, ws);
         player.symbol = games[data.gameID].players.length == 0 ? "X": "O";
         games[data.gameID].players.push(player);
-        player.send({"event": EVENTS.JOINED, "data": {"symbol": player.symbol}});
+        player.send({"event": EVENTS.JOINED, "data": {"symbol": player.symbol, "full": games[data.gameID].players.length == 2}});
+        games[data.gameID].players.forEach((in_player)=>{
+            if(in_player.clientID != player.clientID) {
+                in_player.send({"event": EVENTS.NEW_PLAYER, "data": {"symbol": player.symbol, "id": player.clientID}});
+            }
+        })
         return;
     }
 
@@ -57,7 +66,24 @@ event_emitter.on(EVENTS.JOIN, (data, games, ws)=>{
 
 
 event_emitter.on(EVENTS.MOVE, (data, games, ws)=>{
-
+    if(data.gameID in games) {
+        var sender = games[data.gameID].players.find(player => player.clientID == data.clientID);
+        if(sender) {
+            sender.ws = ws;
+            var [x, y] = data.position.split(" ");
+            var game = games[data.gameID].game;
+            var move_info = {"symbol": sender.symbol, "x": x, "y": y};
+            // games[data.gameID].game.move(sender.symbol, x, y); // TODO: handle game state from here
+            if(game.check_move(move_info)) {
+                game.move(move_info);
+                console.log(`Status of game ${data.gameID} is ${game.status} with move symbol ${game.move_symbol}`);
+                ++sender.moves;
+                games[data.gameID].players.forEach((player)=>{
+                    player.send({"event": EVENTS.MOVED, "data": {"move": data.position, "symbol": sender.symbol, "status": game.status}});
+                });
+            } 
+        }
+    }
 });
 
 
@@ -66,11 +92,15 @@ event_emitter.on(EVENTS.BROADCAST, (data, games, ws)=>{
         var sender = games[data.gameID].players.find(player => player.clientID == data.clientID);
         // console.log(`Sender is ${sender}`); 
         if(sender) {
+            sender.ws = ws;
             games[data.gameID].players.forEach(player => {
                 player.send({"event": EVENTS.BROADCASTED, "data": {"symbol": sender.symbol, "message": data.message}});
             });   
         }
     }
 });
+
+
+// event_emitter.on()
 
 export { event_emitter, data_is_valid };
