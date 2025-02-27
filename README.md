@@ -23,11 +23,11 @@ $ node game_server/index.mjs
 
 #### TODO
 - [X] Offline Mode
-- [ ] Online Mode
+- [X] Online Mode
     - [X] Game creation
     - [X] Player Validation (simple cookies for now)
     - [X] Handle the same player for multiple games (same clientID across different games)
-    - [ ] Manage the Game
+    - [X] Manage the Game
 
 #### devlog
 - events are:
